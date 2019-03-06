@@ -109,7 +109,25 @@ SAMPLE OUTPUT (file makelake.out):
 342144
 */
    public static int bronze(String filename){
+     File mazetxt = new File(filename);
+     Scanner inf = new Scanner(mazetxt);
 
+     ArrayList<String> ref = new ArrayList<String>();
+     char[][]map;
+     while(inf.hasNextLine()){
+       String line = inf.nextLine();
+       ref.add(line);
+     }
+
+     int numLines = ref.size();
+     int charsPerLine = ref.get(0).length();
+     map = new char[numLines][charsPerLine];
+
+     for (int i = 0; i < numLines; i++){
+       for (int j = 0; j < charsPerLine; j++){
+         map[i][j] = ref.get(i).charAt(j);
+       }
+     }
    }
 
 /*SILVER Problem 7: Cow Travelling [Aram Shatakhtsyan, 2007]
