@@ -1,5 +1,9 @@
- public static USACO{
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+import java.io.*;
 
+ public static USACO{
 
 /*BRONZE Problem 12: Lake Making [Rob Kolstad, 2008]
 
