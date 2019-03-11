@@ -122,15 +122,22 @@ SAMPLE OUTPUT (file makelake.out):
      int steps = 0;
      int[][] hill = new[row][col];
 
-
      for (int i = 0; i < rows; i++){
        for (int j = 0; j < cols; j++){
          hill[i][j] = inf.nextInt();
        }
      }
 
-
+     while( steps != 0 ){
+       bronzeHelper();
+       steps--;
+     }
    }
+
+  private static void bronzeHelper(int[][] hills, int row, int col, int digStomp){
+    
+  }
+
 
 /*SILVER Problem 7: Cow Travelling [Aram Shatakhtsyan, 2007]
 
