@@ -121,6 +121,7 @@ SAMPLE OUTPUT (file makelake.out):
      int elevation = 0;
      int steps = 0;
      int[][] hill = new[row][col];
+     int res = 0;
 
      for (int i = 0; i < rows; i++){
        for (int j = 0; j < cols; j++){
@@ -132,12 +133,20 @@ SAMPLE OUTPUT (file makelake.out):
        bronzeHelper();
        steps--;
      }
+
+     for(int i = 0; i < rows; i++){
+      for(int j = 0; j < cols; j++){
+        if(hill[x][y] < elevation){ //land shldnt go lower
+          res += (elevation - hills[i][j]); //adds elev DIFF per sq
+        }
+      }
+    }
+     
    }
 
   private static void bronzeHelper(int[][] hills, int row, int col, int digStomp){
     
   }
-
 
 /*SILVER Problem 7: Cow Travelling [Aram Shatakhtsyan, 2007]
 
