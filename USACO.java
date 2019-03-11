@@ -141,11 +141,33 @@ SAMPLE OUTPUT (file makelake.out):
         }
       }
     }
-     
+    res * 5184;
+    return res;
    }
 
   private static void bronzeHelper(int[][] hills, int row, int col, int digStomp){
-    
+    int down = 0;
+    row -= 1;
+    col -= 1;
+
+    for(int i = row; i < row + 3; i++){
+      for(int j = col; j < col + 3; j++){
+        if(hill[i][j] > down){
+          down = hill[i][j]; //changing the max amnt of being able to go down
+        }
+      }
+    }
+
+    down -= digStomp; //dig peak of hill
+
+    for(int i = row; i < row + 3; i++){
+      for(int j = col; j < col + 3; j++){
+        if(hill[i][j] > down){
+          hill[i][j] = down; 
+        }
+      }
+    }
+
   }
 
 /*SILVER Problem 7: Cow Travelling [Aram Shatakhtsyan, 2007]
