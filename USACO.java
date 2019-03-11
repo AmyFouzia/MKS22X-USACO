@@ -112,7 +112,7 @@ SAMPLE OUTPUT (file makelake.out):
 
 342144
 */
-   public static int bronze(String filename){
+   public static int bronze(String filename) throws FileNotFoundException{
      File text = new File(filename);
      Scanner inf = new Scanner(mazetxt);
 
@@ -123,8 +123,8 @@ SAMPLE OUTPUT (file makelake.out):
      int[][] hill = new[row][col];
      int res = 0;
 
-     for (int i = 0; i < rows; i++){
-       for (int j = 0; j < cols; j++){
+     for (int i = 0; i < row; i++){
+       for (int j = 0; j < col; j++){
          hill[i][j] = inf.nextInt();
        }
      }
@@ -134,8 +134,8 @@ SAMPLE OUTPUT (file makelake.out):
        steps--;
      }
 
-     for(int i = 0; i < rows; i++){
-      for(int j = 0; j < cols; j++){
+     for(int i = 0; i < row; i++){
+      for(int j = 0; j < col; j++){
         if(hill[x][y] < elevation){ //land shldnt go lower
           res += (elevation - hills[i][j]); //adds elev DIFF per sq
         }
@@ -163,7 +163,7 @@ SAMPLE OUTPUT (file makelake.out):
     for(int i = row; i < row + 3; i++){
       for(int j = col; j < col + 3; j++){
         if(hill[i][j] > down){
-          hill[i][j] = down; 
+          hill[i][j] = down;
         }
       }
     }
@@ -229,11 +229,26 @@ OUTPUT DETAILS:
 There is only one way from (1,3) to (1,5) in exactly 6 seconds (and
 it is the obvious one that travels around the two trees).
 */
-   public static int silver(String filename){
+   public static int silver(String filename) throws FileNotFoundException{
+    File text = new File(filename);
+    Scanner inf = new Scanner(text);
+
+    int row = inf.nextInt();
+    int col = inf.nextInt();
+    int sec = inf.nextInt();
+    int[][] map1 = new int[row][col];
+    int[][] map2 = new int[row][col];
+
+    ArrayList<String> track = new ArrayList<String>();
+    for(int i = 0; i < row; i++){
+      track.add(inf.next());
+    }
+
 
    }
 
-   public static void main(String[]args){
+   private static int silverHelper(int[][] map,int[][] map1,int xcor1,int ycor1,int xcor2,int ycor2,int seconds{
 
    }
+
  }
