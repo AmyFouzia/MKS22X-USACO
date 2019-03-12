@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.io.*;
 
- public static USACO{
+ public class USACO{
 
 /*BRONZE Problem 12: Lake Making [Rob Kolstad, 2008]
 
@@ -114,13 +114,13 @@ SAMPLE OUTPUT (file makelake.out):
 */
    public static int bronze(String filename) throws FileNotFoundException{
      File text = new File(filename);
-     Scanner inf = new Scanner(mazetxt);
+     Scanner inf = new Scanner(text);
 
      int row = 0;
      int col = 0;
      int elevation = 0;
      int steps = 0;
-     int[][] hill = new[row][col];
+     int[][] hill = new int[row][col];
      int res = 0;
 
      for (int i = 0; i < row; i++){
@@ -130,22 +130,22 @@ SAMPLE OUTPUT (file makelake.out):
      }
 
      while( steps != 0 ){
-       bronzeHelper();
+       bronzeHelper(hill, inf.nextInt(), inf.nextInt(), inf.nextInt());
        steps--;
      }
 
      for(int i = 0; i < row; i++){
       for(int j = 0; j < col; j++){
-        if(hill[x][y] < elevation){ //land shldnt go lower
-          res += (elevation - hills[i][j]); //adds elev DIFF per sq
+        if(hill[i][j] < elevation){ //land shldnt go lower
+          res += (elevation - hill[i][j]); //adds elev DIFF per sq
         }
       }
     }
-    res * 5184;
+    res = res * 5184;
     return res;
    }
 
-  private static void bronzeHelper(int[][] hills, int row, int col, int digStomp){
+  private static void bronzeHelper(int[][] hill, int row, int col, int digStomp){
     int down = 0;
     row -= 1;
     col -= 1;
@@ -244,11 +244,69 @@ it is the obvious one that travels around the two trees).
       track.add(inf.next());
     }
 
+    for(int i = 0; i < row; i++){
+      for(int j = 0; j < col; j++){
+        if(track.get(i).charAt(j) == '*'){
+          map1[i][j] = -1;
+        }
+        else {
+          map1[i][j] = 0;
+        }
+      }
+    }
+      //same but map2
+    for(int i = 0; i < row; i++){
+      for(int j = 0; j < col; j++){
+        if(track.get(i).charAt(j) == '*'){
+          map2[i][j] = -1;
+        }
+        else {
+          map2[i][j] = 0;
+        }
+      }
+    }
 
-   }
+    return silverHelper(map1, map2, inf.nextInt(), inf.nextInt(), inf.nextInt(), inf.nextInt(), sec);
+    }
 
-   private static int silverHelper(int[][] map,int[][] map1,int xcor1,int ycor1,int xcor2,int ycor2,int seconds{
+   private static int silverHelper(int[][] map1,int[][] map2,int row1,int col1,int row2,int col2,int sec){
+     map1[row1 - 1][col1 - 1] = 1;
+     map2[row1 - 1][col1 - 1] = 1;
+     int res = 0;
 
+     while(sec > 0){
+       for(int i = 0; i < map1.length; i++){
+         for(int j = 0; j < map1[0].length; j++){
+
+           if(map1[i][j] != -1){
+             if(i - 1 >= 0 && map1[i-1][j] != -1){
+               res += map1[i-1][j];
+              }
+
+           if(i + 1 < map1.length && map1[i+1][j] != -1){
+             res += map1[i+1][j];
+           }
+
+           if(j - 1 >= 0 && map1[i][j-1] != -1){
+             res += map1[i][j-1];
+           }
+
+           if(j + 1 < map1[0].length && map1[i][j+1] != -1){
+             res += map1[i][j+1];
+           }
+
+           map2[i][j] = res;
+         }
+        }
+       }
+       for(int a = 0; a < map1.length; a++){
+         for(int b = 0; b < map1[0].length; b++){
+           map1[a][b] = map2[a][b];
+         }
+       }
+       sec--;
+     }
+     return map1[row2-1][col2-1];
    }
 
  }
