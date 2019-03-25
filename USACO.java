@@ -116,10 +116,10 @@ SAMPLE OUTPUT (file makelake.out):
      File text = new File(filename);
      Scanner inf = new Scanner(text);
 
-     int row = 0;
-     int col = 0;
-     int elevation = 0;
-     int steps = 0;
+     int row = inf.nextInt();
+     int col = inf.nextInt();
+     int elevation = inf.nextInt();
+     int steps = inf.nextInt();
      int[][] hill = new int[row][col];
      int res = 0;
 
@@ -141,8 +141,7 @@ SAMPLE OUTPUT (file makelake.out):
         }
       }
     }
-    res = res * 5184;
-    return res;
+    return res*72*72;
    }
 
   private static void bronzeHelper(int[][] hill, int row, int col, int digStomp){
@@ -240,6 +239,7 @@ it is the obvious one that travels around the two trees).
     int[][] map2 = new int[row][col];
 
     ArrayList<String> track = new ArrayList<String>();
+
     for(int i = 0; i < row; i++){
       track.add(inf.next());
     }
@@ -281,7 +281,7 @@ it is the obvious one that travels around the two trees).
            if(map1[i][j] != -1){
              if(i - 1 >= 0 && map1[i-1][j] != -1){
                res += map1[i-1][j];
-              }
+             }
 
            if(i + 1 < map1.length && map1[i+1][j] != -1){
              res += map1[i+1][j];
